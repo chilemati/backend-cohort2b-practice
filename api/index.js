@@ -1,10 +1,10 @@
 // imports
 const express = require('express');
-const userRouter = require('./routes/user');
-const errorRouter = require('./routes/error');
+const userRouter = require('../routes/user');
+const errorRouter = require('../routes/error');
 const bodyParser = require('body-parser');
-const db = require('./services/connectDb');
-const blogRouter = require('./routes/blog');
+const db = require('../services/connectDb');
+const blogRouter = require('../routes/blog');
 require('dotenv').config();
 var cors = require('cors')
 
@@ -49,3 +49,6 @@ db(()=> {
     })
 
 });
+
+
+module.exports = app;
