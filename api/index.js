@@ -34,7 +34,7 @@ app.use('/api',[userRouter,blogRouter,errorRouter]);
 // routes or simple code logics
 
 app.get('/',(req,res)=> {
-    res.json({home:'Home page'})
+     res.send("Express on Vercel");
 })
 
 
@@ -44,7 +44,7 @@ app.get('/',(req,res)=> {
 //start server
 
 db(()=> {
-    app.listen(PORT || 8100,()=> {
+    app.listen(PORT || 3000,()=> {
         console.log('Listening to requests on port '+ PORT || 8100)
     })
 
