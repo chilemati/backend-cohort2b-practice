@@ -7,6 +7,7 @@ const db = require('../services/connectDb');
 const blogRouter = require('../routes/blog');
 require('dotenv').config();
 var cors = require('cors')
+const path = require('path');
 
 let {PORT} = process.env
 
@@ -30,12 +31,22 @@ app.use(bodyParser.json()) // accept json from frontend
 app.use('/api',[userRouter,blogRouter,errorRouter]);
 // app.use('/api',errorRouter);
 
+//? connect with react frontend
+///>>>>>>>> DEPLOYMENT >>>>>>>>>>>>>>>>>
+app.use(express.static(path.join(__dirname, "./client/dist")));
+
+//>>>>>>>>> SERVE REACT INDEX.HTML EACH TIME THERE IS A GET REQUEST >>>>>>>>>>>>>>
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/dist", "index.html"));
+});
 
 // routes or simple code logics
 
-app.get('/',(req,res)=> {
-     res.send("Express on Vercel");
-})
+
+// app.get('/',(req,res)=> {
+//      res.send("Express on Vercel");
+// })
 
 
 
