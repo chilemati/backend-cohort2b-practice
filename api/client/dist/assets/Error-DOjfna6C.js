@@ -1,1 +1,0 @@
-import{u as r,j as e}from"./index-VxRWjDM4.js";const n=()=>{let t=r();return e.jsxs("div",{className:"flex flex-col min-h-[80vh] items-center justify-center gap-4 ",children:[e.jsx("p",{className:"text-red-600 font-Raleway font-bold text-3xl ",children:"404. Page not found"}),e.jsx("button",{onClick:()=>t("/"),children:"Return Home"})]})};export{n as default};

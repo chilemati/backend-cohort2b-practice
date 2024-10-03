@@ -13,20 +13,20 @@ let {PORT} = process.env
 
 
 
-let origin = ['http://localhost:5173'];
+let origin = ['http://localhost:5173','http://localhost:3000','http://localhost:4173'];
+
 var corsOptions = {
-    origin: origin,
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
+  origin: origin,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 const app = express();
 
 //! middlewares
-app.use(cors(corsOptions))
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false })) // accept form from frontend
+app.use(cors(corsOptions)); // allow commuication with FE
 
-// parse application/json
-app.use(bodyParser.json()) // accept json from frontend
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" })); // allow form fields
+app.use(bodyParser.json({ limit: "50mb" })); // allow json fields
 
 app.use('/api',[userRouter,blogRouter,errorRouter]);
 // app.use('/api',errorRouter);
@@ -39,6 +39,11 @@ app.use(express.static(path.join(__dirname, "./client/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/dist", "index.html"));
+//   res.setHeader("Access-Control-Allow-Origin", "*")
+// res.setHeader("Access-Control-Allow-Credentials", "true");
+// res.setHeader("Access-Control-Max-Age", "1800");
+// res.setHeader("Access-Control-Allow-Headers", "content-type");
+// res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
 });
 
 // routes or simple code logics
