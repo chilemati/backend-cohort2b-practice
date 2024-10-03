@@ -13,7 +13,7 @@ let {PORT} = process.env
 
 
 
-let origin = ['http://localhost:5173','http://localhost:3000','http://localhost:4173'];
+let origin = ['http://localhost:5173','http://localhost:3000','http://localhost:4173',"https://react-demo2-practice.vercel.app"];
 
 var corsOptions = {
   origin: origin,
@@ -32,26 +32,22 @@ app.use('/api',[userRouter,blogRouter,errorRouter]);
 // app.use('/api',errorRouter);
 
 //? connect with react frontend
-///>>>>>>>> DEPLOYMENT >>>>>>>>>>>>>>>>>
-app.use(express.static(path.join(__dirname, "./client/dist")));
+// ///>>>>>>>> DEPLOYMENT >>>>>>>>>>>>>>>>>
+// app.use(express.static(path.join(__dirname, "./client/dist")));
 
-//>>>>>>>>> SERVE REACT INDEX.HTML EACH TIME THERE IS A GET REQUEST >>>>>>>>>>>>>>
+// //>>>>>>>>> SERVE REACT INDEX.HTML EACH TIME THERE IS A GET REQUEST >>>>>>>>>>>>>>
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/dist", "index.html"));
-//   res.setHeader("Access-Control-Allow-Origin", "*")
-// res.setHeader("Access-Control-Allow-Credentials", "true");
-// res.setHeader("Access-Control-Max-Age", "1800");
-// res.setHeader("Access-Control-Allow-Headers", "content-type");
-// res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/dist", "index.html"));
+
+// });
 
 // routes or simple code logics
 
 
-// app.get('/',(req,res)=> {
-//      res.send("Express on Vercel");
-// })
+app.get('/',(req,res)=> {
+     res.send("Express on Vercel | react-demo2 backend api");
+})
 
 
 
